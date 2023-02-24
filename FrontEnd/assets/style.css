@@ -53,6 +53,23 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
+.edition{
+	height: 60px;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.white{
+	color: white;
+	margin-right: 20px;
+}
+.publier{
+	color:black ;
+	background-color: white;
+	padding: 10px;
+	border-radius: 20px;
+}
 header {
 	display: flex;
 	justify-content: space-between;
@@ -101,6 +118,7 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-bottom: 0%;
 }
 #introduction figure {
 	flex: 1
@@ -125,6 +143,55 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+.flex{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+.modifier{
+	margin-bottom: 1.7em;
+	margin-left: 25px;
+}
+.modifier:hover , .modifier1:hover {
+	color: grey;
+}
+.modifier1{
+	margin-bottom: 100px;
+    margin-left: 58px;
+    margin-top: 5px;
+}
+.filtres{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	align-items: baseline;
+	height: 85px;
+}
+
+.filtre{
+	color: #1D6154;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-weight: 700;
+	padding: 9px 11px;
+	margin: 1%;
+	border: #1D6154 solid 1px;
+	border-radius: 20px;
+	z-index: 1;
+
+}
+.filtre:visited{
+	color:rgb(255, 0, 0)
+}
+
+.clicked{
+	background-color: #1D6154;
+	color: white;
+}
+
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -137,7 +204,7 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
+#contact, .loginpage {
 	width: 50%;
 margin: auto;
 }
@@ -148,20 +215,20 @@ margin: auto;
 #contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form ,.loginform{
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #email2, #password, .envoyer  {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, .loginpage label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -180,9 +247,112 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+.modal{
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	justify-content: center;
+	align-items: center;
+}
+.modal-content{
+	width: 600px;
+	height: 600px;
+	background-color: white;
+	border-radius: 10px;	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+}
+.h1modal{
+	font-family: 'Work Sans';
+	color: black;
+	font-weight: 400;
+	align-self: center;
+	margin-bottom: 45px;
+}
+.mark{
+	align-self: end;
+}
+.gallery-modal{
+	justify-self: start;
+	border-bottom: solid 1px #B3B3B3;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	padding-bottom: 25px;
+}
+
+
+.photos-modal{
+	margin:3px;
+}
+.photos-modal>img{
+	width: 78px;
+	height: 104px;
+}
+.fa-trash-can{
+	position: relative;
+	top: -85px;
+	right: 17px;
+}
+.ajout{
+	justify-self: center;
+	font-family: 'Syne';
+	color: white;
+	padding: 11px 50px;
+	background-color: #1D6154;
+	border-radius: 30px;
+	margin: 29px;
+}
+.suppr{
+	justify-self: center;
+	font-family: 'Syne';
+	color: #D65353;
+	;
+}
+.on{
+	display: flex;
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
 
+.nothing{
+	display: none;
+}
+
+
+/* -------------------PAGE DE LOGIN -------------------------------- */
+
+
+.loginpage{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.loginform{
+	width: 35%;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.mdp{
+	text-decoration: underline;}
+
+.foot {
+	margin-top: 10em;
+	text-align: end;
+}
