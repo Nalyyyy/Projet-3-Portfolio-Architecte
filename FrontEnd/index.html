@@ -75,7 +75,7 @@
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer" class="envoie" />
         </form>
       </section>
     </main>
@@ -101,15 +101,20 @@
       <h1 class="h1modal">Ajout photo</h1>
       <div class="upload">
           <i class="fa-thin fa-image image"></i>
+          <input type="file" id="file" accept="image/*" style="display: none;">
           <button class="ajoutplus">+ Ajouter une photo</button>
-          <p>jpg,png :4mo max</p>
-      </div>
-      <label for="titre" class="left">Titre</label>
-      <input type="text" id="titre" name="titre">
-      <label for="categorie" class="left">Catégorie</label>
-      <input type="text" id="categorie" name="categorie">
-      <div class="trait"></div>
-      <button class="valider"> Valider</button>
+          <p id="jpg.png">jpg,png :4mo max</p>
+   </div>
+      <form action="#" method="post" class="postform">
+        <label for="titre" class="left">Titre</label>
+        <input type="text" id="titre" name="titre">
+        <label for="categorie" class="left">Catégorie</label>
+        <select id="categorie" name="categorie">
+          <!--Intégrer en JS-->
+        </select>
+        <div class="trait"></div>
+        <input type="submit" class="valider" value="Valider"> 
+    </form>
   </div>
 </aside>
 

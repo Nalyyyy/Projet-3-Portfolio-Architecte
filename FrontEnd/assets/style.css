@@ -240,7 +240,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+.envoie{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -293,6 +293,7 @@ input[type="submit"]{
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 	padding-bottom: 25px;
+	height: 380px;
 }
 
 
@@ -346,9 +347,17 @@ input[type="submit"]{
 	width: 70%;
 	background-color: #E8F1F6;
 	justify-content: space-around;
+	position: relative;
 }
 .image{
 	color: #B9C5CC;
+}
+.postform{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
 }
 .ajoutplus{
 	background-color: #CBD6DC;
@@ -388,6 +397,10 @@ input[type="submit"]{
 	font-family: 'Syne';
 	margin-top: 30px;
 	border: none;
+	width: 300px;
+}
+.green{
+	background-color: #1D6154;
 }
 .on{
 	display: flex;
@@ -395,7 +408,10 @@ input[type="submit"]{
 .off{
 	display: none;
 }
-
+.upload img{
+	align-self: center;
+	height: 100%;
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
