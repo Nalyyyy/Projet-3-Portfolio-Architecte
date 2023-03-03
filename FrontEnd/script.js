@@ -32,25 +32,27 @@ photos.classList.add('gallery');
 
 gallery.appendChild(photos);
 
+const tryyy = document.querySelector('.tryy');
+tryyy.addEventListener('click',()=>{
+        worksAll (0) ;
+        photos.innerHTML= '<div class="nothing"></div>';
+})
 
 
 //DISTINCTION ENTRE USER ET ADMIN-------------------------------------------------------------------------------------------
 
-console.log(localStorage.getItem('token'));
 
 if (localStorage.getItem('token')){
         modifier.innerHTML='<i class="fa-regular fa-pen-to-square"></i> modifier';
         modifier1.innerHTML='<i class="fa-regular fa-pen-to-square"></i> modifier';
         topbar.innerHTML='<div class="edition"><span class="white"><i class="fa-regular fa-pen-to-square "></i> Mode édition </span><span class="publier">publier les changements</button> </span> ';
+        tryyy.classList.add('off')
         categorieModal(0);
 }
 else {  
-        filtres.innerHTML= '<button class="filtre id0 " > Tous </button>';
+
         let run1= funcFiltres(0);
-        const tous = document.querySelector('.id0');
-        tous.addEventListener('click', () => 
-                {console.log('yo');
-                let run= worksAll(0)});
+       
 }
 
 
@@ -66,8 +68,8 @@ function worksAll (num) {(fetch('http://localhost:5678/api/works')
                         set.add (data[numero].title );
                         set.add(data[numero].imageUrl);
                         set.add ('id'+data[numero].categoryId ); 
-                        photos.innerHTML += '<figure class="photos"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'" class ="work'+[numero]+'"></img> <figcaption> '+ data[numero].title +'</figcaption> </figure>';
-                        galleryModal.innerHTML += '<figure class="photos-modal"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'" class="binimg'+[numero]+'"><i class="fa-solid fa-trash-can foreach bin'+[numero]+'" id="'+[numero]+'"></i></img> <figcaption> éditer </figcaption> </figure>';
+                        photos.innerHTML += '<figure class="photos work'+data[numero].id+'"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'"></img> <figcaption> '+ data[numero].title +'</figcaption> </figure>';
+                        galleryModal.innerHTML += '<figure class="photos-modal binimg'+data[numero].id+'"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'" ><i class="fa-solid fa-trash-can foreach bin'+[numero]+'" id="'+data[numero].id+'"></i></img> <figcaption> éditer </figcaption> </figure>';
                         numero++;
                 }
                 const filtre = document.querySelectorAll('.filtre');
@@ -88,6 +90,7 @@ let run = worksAll(0);  //Affiche toutes les photos au démarrage
 function funcFiltres (n) {(fetch('http://localhost:5678/api/categories')
         .then (res => res.json())
         .then (data => {
+                
                 while (data[n]){
                         filtres.innerHTML += '<button class="filtre id'+data[n].id+' " id="'+data[n].id+'"> ' +data[n].name+ ' </button>';   
                         n++
@@ -104,6 +107,8 @@ function funcFiltres (n) {(fetch('http://localhost:5678/api/categories')
                         });     
                         n++ 
                 }
+                
+                
         })
 )};
 
@@ -112,17 +117,18 @@ function funcFiltres (n) {(fetch('http://localhost:5678/api/categories')
 function works (num) {(fetch('http://localhost:5678/api/works')
         .then( res => res.json())
         .then ( data => {  
-                let numero=num
+                let numero=0;
+                let number= num
+                number++
                 while (data[numero]){ 
                         let set  = new Set ;
                         set.add (data[numero].title );
                         set.add(data[numero].imageUrl);
                         set.add ('id'+data[numero].categoryId );
-                        console.log(data[num]);
-                        if  ( set.has ('id'+data[num].id+'') ){ 
+                        if  ( set.has ('id'+number+'') ){ 
                                 const filtre = document.querySelectorAll('.filtre');
                                 filtre.forEach(element => { element.classList.remove('clicked')});
-                                let find = document.querySelector('.id'+ data[num].id+'');
+                                let find = document.querySelector('.id'+ number+'');
                                 find.classList.add('clicked');
                                 photos.innerHTML += '<figure class="photos"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'"></img> <figcaption> '+ data[numero].title +'</figcaption> </figure>';
                         }                   
@@ -196,7 +202,6 @@ suppr.addEventListener('click', ()=> {
 
 
 //---------------------SUPPRESSION DE TRAVAUX DEPUIS LA MODALE-------------------------------------------------------------------
-console.log(localStorage["token"]);
  
 function deleteWorks (id) { 
      fetch(`http://localhost:5678/api/works/${id}`, { 
@@ -207,14 +212,13 @@ function deleteWorks (id) {
      }) 
     .then(res => { 
             if(res.ok) { 
-                    let work = document.querySelector(`work${id}`);
-                    let binwork = document.querySelector(`binimg${id}`);
-                    let bin = document.querySelector(`bin${id}`);
+                    let work = document.querySelector(`.work${id}`);
+                    let binwork = document.querySelector(`.binimg${id}`);
                     work.classList.add('off');
                     binwork.classList.add('off');
-                    bin.classList.add('off');
-                    console.log(work);
+                    console.log('ok');
             } 
+            else {console.log('bug');}
      }) 
      .catch((error) => {console.log(error)}); 
  }
@@ -226,6 +230,7 @@ function deleteWorks (id) {
 //------------------------------------------MODAL 2 ---------------------------------------------------------------------------------
 
 function modal2Open () {
+        category.value = null;
         modal2.classList.add('on');
         mark2.addEventListener('click',() => modal2Close ());
         modal2.addEventListener('click', () => modal2Close());
@@ -242,7 +247,8 @@ function modal2Close () {
         modal2.classList.remove('on');
         mark2.removeEventListener('click',() => modalClose ());
         modal2.removeEventListener('click', () => modalClose());
-        modal2.querySelector('.modal2-contentjs').removeEventListener('click' ,(e) => e.stopPropagation())
+        modal2.querySelector('.modal2-contentjs').removeEventListener('click' ,(e) => e.stopPropagation());
+        formSubmit()
 };
 
 
@@ -251,7 +257,7 @@ function modal2Close () {
 
 ajoutplus.addEventListener('click' ,()=> file.click());
 
-
+const imgModal = new Image();
 
 file.addEventListener('change', (event)=>{
         const img= event.target.files;
@@ -265,12 +271,11 @@ file.addEventListener('change', (event)=>{
                 const url = reader.result;
                 urlImage = file.files[0];
                 console.log(url);
-                const img = new Image();
-                img.src = url;
-                upload.appendChild(img)
+                imgModal.src = url;
+                upload.appendChild(imgModal)
                 ajoutplus.classList.add('off');
                 p.classList.add('off');
-                imageicon.classList.add('off')
+                imageicon.classList.add('off');
         })
 })
 let tryy;
@@ -293,7 +298,7 @@ postForm.addEventListener('submit', (e)=> {
         if(urlImage && title.value && category.value){
                 dataForm.append("image",urlImage)
                 dataForm.append("title", title.value)
-                dataForm.append("category", '3')
+                dataForm.append("category", category.value )
                 tryy = new URLSearchParams(dataForm);
                 console.log(Array.from(dataForm));
                 console.log(tryy);
@@ -304,7 +309,7 @@ postForm.addEventListener('submit', (e)=> {
         }
 })
  
-const dataForm = new FormData();
+let dataForm = new FormData();
 
 
 
@@ -318,7 +323,11 @@ function postWorks ()
             body: dataForm
             
      }) .then(res => { 
-                if(res.ok) { console.log('ok')} 
+                if(res.ok) { 
+                        console.log('ok');
+                        formSubmit()
+
+                } 
                 else {return};
 
         }).catch((error) => {
@@ -326,12 +335,24 @@ function postWorks ()
                 console.log('erreur')}); 
  }
 
+function formSubmit() {
+        title.value = null;
+        category.value = null;
+        urlImage=null;
+        ajoutplus.classList.remove('off');
+        p.classList.remove('off');
+        imageicon.classList.remove('off');
+        dataForm = null;
+        dataForm = new FormData();
+        upload.removeChild(imgModal)
+}
+
 
 function categorieModal (n) {(fetch('http://localhost:5678/api/categories')
         .then (res => res.json())
         .then (data => {
                 while (data[n]){
-                        categorie.innerHTML += '<option class="' +data[n].name+ '"> ' +data[n].name+ ' </option>';   
+                        categorie.innerHTML += '<option class="' +data[n].name+ '" id="'+data[n].id+'" value="'+data[n].id+'"> ' +data[n].name+ ' </option>';   
                         n++
                 };
         })

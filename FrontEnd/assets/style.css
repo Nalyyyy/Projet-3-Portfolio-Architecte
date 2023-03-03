@@ -168,10 +168,17 @@ li:hover {
 .filtres{
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	width: 100%;
+	width: 560px;
 	align-items: baseline;
 	height: 85px;
+}
+.allFiltres{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    align-items: baseline;
+    height: 85px;
 }
 
 .filtre{
@@ -179,7 +186,7 @@ li:hover {
 	font-family: 'Syne';
 	font-size: 16px;
 	font-weight: 700;
-	padding: 9px 11px;
+	padding: 9px 25px;
 	margin: 1%;
 	border: #1D6154 solid 1px;
 	border-radius: 20px;
@@ -408,6 +415,9 @@ margin: auto;
 .off{
 	display: none;
 }
+#off{
+	display: none;
+}
 .upload img{
 	align-self: center;
 	height: 100%;
@@ -447,4 +457,14 @@ footer nav ul {
 .foot {
 	margin-top: 10em;
 	text-align: end;
+}
+.envoyer{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
 }
