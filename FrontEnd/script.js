@@ -1,6 +1,7 @@
 const gallery = document.querySelector ('.js');
 const filtres = document.querySelector('.filtres');
 const login = document.querySelector('.login');
+const logout = document.querySelector('.logout');
 const modifier = document.querySelector('.modifier');
 const modifier1 = document.querySelector('.modifier1');
 const topbar = document.querySelector('.topbar');
@@ -48,9 +49,14 @@ if (localStorage.getItem('token')){
         topbar.innerHTML='<div class="edition"><span class="white"><i class="fa-regular fa-pen-to-square "></i> Mode édition </span><span class="publier">publier les changements</button> </span> ';
         tryyy.classList.add('off')
         categorieModal(0);
+        login.classList.add('off');
+        logout.addEventListener('click', ()=> {
+                localStorage.removeItem('token');
+                location.reload()
+        })
 }
 else {  
-
+        logout.classList.add('off')
         let run1= funcFiltres(0);
        
 }
@@ -171,6 +177,7 @@ modifier.addEventListener('click', () => {
         while(n < bintrash.length){
                 let bin = document.querySelector('.bin'+n+'');
                 bin.addEventListener('click', () => {
+                        console.log('yo');
                         deleteWorks(bin.id);
                 });     
                 n++ 
@@ -192,7 +199,7 @@ suppr.addEventListener('click', ()=> {
         let n=0
         while(n < bintrash.length){
                     let bin = document.querySelector('.bin'+n+'');
-                    bin.click;
+                    bin.click();
                     n++
         }
 });
@@ -326,7 +333,10 @@ function postWorks ()
                 if(res.ok) { 
                         console.log('ok');
                         formSubmit()
-
+                        photos.innerHTML += '<figure class="photos"><img  src= "http://localhost:5678/images/' + urlImage.name+'"alt="'+ title.value+'"></img> <figcaption> '+  title.value +'</figcaption> </figure>';
+                        galleryModal.innerHTML += '<figure class="photos-modal "><img  src= "http://localhost:5678/images/' + urlImage.name+'"alt="'+title.value+'" ><i class="fa-solid fa-trash-can foreach bin" ></i></img> <figcaption> éditer </figcaption> </figure>';
+                        urlImage=null;
+                        title.value = null;
                 } 
                 else {return};
 
@@ -336,15 +346,15 @@ function postWorks ()
  }
 
 function formSubmit() {
-        title.value = null;
+       
         category.value = null;
-        urlImage=null;
         ajoutplus.classList.remove('off');
         p.classList.remove('off');
         imageicon.classList.remove('off');
         dataForm = null;
         dataForm = new FormData();
-        upload.removeChild(imgModal)
+        console.log(upload.childElementCount);
+        if (upload.childElementCount ==5 ){upload.removeChild(imgModal)}
 }
 
 
