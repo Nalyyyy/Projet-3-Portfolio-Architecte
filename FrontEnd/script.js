@@ -28,6 +28,7 @@ let titleImage;
 let categoryImage;
 let number= -1;
 let photos= document.createElement ("div");
+let numberBin = 0;
 
 photos.classList.add('gallery');
 
@@ -194,6 +195,8 @@ modifier.addEventListener('click', () => {
           
 });
 
+
+
 suppr.addEventListener('click', ()=> {
         let bintrash = document.querySelectorAll('.foreach');
         let n=0
@@ -224,6 +227,7 @@ function deleteWorks (id) {
                     work.classList.add('off');
                     binwork.classList.add('off');
                     console.log('ok');
+                    numberBin--
             } 
             else {console.log('bug');}
      }) 
@@ -258,6 +262,17 @@ function modal2Close () {
         formSubmit()
 };
 
+
+function categorieModal (n) {(fetch('http://localhost:5678/api/categories')
+        .then (res => res.json())
+        .then (data => {
+                while (data[n]){
+                        categorie.innerHTML += '<option class="' +data[n].name+ '" id="'+data[n].id+'" value="'+data[n].id+'"> ' +data[n].name+ ' </option>';   
+                        n++
+                        numberBin++
+                };
+        })
+)};
 
 
 //------------------------------------------AJOUT DES TRAVAUX--------------------------------------------------------------------------
@@ -334,7 +349,7 @@ function postWorks ()
                         console.log('ok');
                         formSubmit()
                         photos.innerHTML += '<figure class="photos"><img  src= "http://localhost:5678/images/' + urlImage.name+'"alt="'+ title.value+'"></img> <figcaption> '+  title.value +'</figcaption> </figure>';
-                        galleryModal.innerHTML += '<figure class="photos-modal "><img  src= "http://localhost:5678/images/' + urlImage.name+'"alt="'+title.value+'" ><i class="fa-solid fa-trash-can foreach bin" ></i></img> <figcaption> éditer </figcaption> </figure>';
+                        galleryModal.innerHTML += '<figure class="photos-modal "><img  src= "http://localhost:5678/images/' + urlImage.name +'"alt="'+title.value+'" ><i class="fa-solid fa-trash-can foreach bin" ></i></img> <figcaption> éditer </figcaption> </figure>';
                         urlImage=null;
                         title.value = null;
                 } 
@@ -357,13 +372,3 @@ function formSubmit() {
         if (upload.childElementCount ==5 ){upload.removeChild(imgModal)}
 }
 
-
-function categorieModal (n) {(fetch('http://localhost:5678/api/categories')
-        .then (res => res.json())
-        .then (data => {
-                while (data[n]){
-                        categorie.innerHTML += '<option class="' +data[n].name+ '" id="'+data[n].id+'" value="'+data[n].id+'"> ' +data[n].name+ ' </option>';   
-                        n++
-                };
-        })
-)};
