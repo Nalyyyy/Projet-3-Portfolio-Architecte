@@ -29,6 +29,7 @@ let categoryImage;
 let number= -1;
 let photos= document.createElement ("div");
 let numberBin = 0;
+let tryy;
 
 photos.classList.add('gallery');
 
@@ -236,8 +237,6 @@ function deleteWorks (id) {
 
 
 
-
-
 //------------------------------------------MODAL 2 ---------------------------------------------------------------------------------
 
 function modal2Open () {
@@ -300,7 +299,7 @@ file.addEventListener('change', (event)=>{
                 imageicon.classList.add('off');
         })
 })
-let tryy;
+
 
 
 document.addEventListener('keydown' ,(e)=>{ 
