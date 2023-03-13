@@ -29,14 +29,14 @@ let categoryImage;
 let number= -1;
 let photos= document.createElement ("div");
 let numberBin = 0;
-let tryy;
+// let tryy;
 
 photos.classList.add('gallery');
 
 gallery.appendChild(photos);
 
-const tryyy = document.querySelector('.tryy');
-tryyy.addEventListener('click',()=>{
+const tous = document.querySelector('.tous');
+tous.addEventListener('click',()=>{
         worksAll (0) ;
         photos.innerHTML= '<div class="nothing"></div>';
 })
@@ -49,7 +49,7 @@ if (localStorage.getItem('token')){
         modifier.innerHTML='<i class="fa-regular fa-pen-to-square"></i> modifier';
         modifier1.innerHTML='<i class="fa-regular fa-pen-to-square"></i> modifier';
         topbar.innerHTML='<div class="edition"><span class="white"><i class="fa-regular fa-pen-to-square "></i> Mode édition </span><span class="publier">publier les changements</button> </span> ';
-        tryyy.classList.add('off')
+        tous.classList.add('off')
         categorieModal(0);
         login.classList.add('off');
         logout.addEventListener('click', ()=> {
@@ -59,7 +59,7 @@ if (localStorage.getItem('token')){
 }
 else {  
         logout.classList.add('off')
-        let run1= funcFiltres(0);
+        funcFiltres(0);
        
 }
 
@@ -313,6 +313,7 @@ document.addEventListener('keydown' ,(e)=>{
 
 
 
+
 postForm.addEventListener('submit', (e)=> {
         e.preventDefault();
         
@@ -320,9 +321,9 @@ postForm.addEventListener('submit', (e)=> {
                 dataForm.append("image",urlImage)
                 dataForm.append("title", title.value)
                 dataForm.append("category", category.value )
-                tryy = new URLSearchParams(dataForm);
-                console.log(Array.from(dataForm));
-                console.log(tryy);
+                // tryy = new URLSearchParams(dataForm);
+                // console.log(Array.from(dataForm));
+                // console.log(tryy);
                 postWorks()
 
         }else{
