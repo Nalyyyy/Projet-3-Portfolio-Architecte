@@ -175,7 +175,6 @@ modifier.addEventListener('click', () => {
         while(n < bintrash.length){
                 let bin = document.querySelector('.bin'+n+'');
                 bin.addEventListener('click', () => {
-                        console.log('yo');
                         deleteWorks(bin.id);
                 });     
                 n++ 
@@ -276,7 +275,6 @@ ajoutplus.addEventListener('click' ,()=> file.click());
 const imgModal = new Image();
 
 file.addEventListener('change', (event)=>{
-        const img= event.target.files;
         const reader = new FileReader();
 	reader.readAsDataURL(file.files[0])
         reader.addEventListener('load', ()=>{
@@ -311,9 +309,6 @@ postForm.addEventListener('submit', (e)=> {
                 dataForm.append("image",urlImage)
                 dataForm.append("title", title.value)
                 dataForm.append("category", category.value )
-                // tryy = new URLSearchParams(dataForm);
-                // console.log(Array.from(dataForm));
-                // console.log(tryy);
                 postWorks()
 
         }else{

@@ -366,6 +366,9 @@ margin: auto;
 	flex-direction: column;
 	width: 100%;
 }
+.fa-image{
+	font-size: 50px;
+}
 .ajoutplus{
 	background-color: #CBD6DC;
 	padding: 11px 35px;
