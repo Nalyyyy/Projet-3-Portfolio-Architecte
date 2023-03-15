@@ -72,10 +72,6 @@ function worksAll (num) {(fetch('http://localhost:5678/api/works')
         .then ( data => {  
                 let numero=num ;
                 while (data[numero]){ 
-                        let set  = new Set ;
-                        set.add (data[numero].title );
-                        set.add(data[numero].imageUrl);
-                        set.add ('id'+data[numero].categoryId ); 
                         photos.innerHTML += '<figure class="photos work'+data[numero].id+'"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'"></img> <figcaption> '+ data[numero].title +'</figcaption> </figure>';
                         galleryModal.innerHTML += '<figure class="photos-modal binimg'+data[numero].id+'"><img  src= "' + data[numero].imageUrl+'"alt="'+data[numero].title+'" ><i class="fa-solid fa-trash-can foreach bin'+[numero]+'" id="'+data[numero].id+'"></i></img> <figcaption> éditer </figcaption> </figure>';
                         numero++;
@@ -227,10 +223,9 @@ function deleteWorks (id) {
                     let binwork = document.querySelector(`.binimg${id}`);
                     work.classList.add('off');
                     binwork.classList.add('off');
-                    console.log('ok');
                     numberBin--
             } 
-            else {console.log('bug');}
+            
      }) 
      .catch((error) => {console.log(error)}); 
  }
@@ -282,16 +277,11 @@ const imgModal = new Image();
 
 file.addEventListener('change', (event)=>{
         const img= event.target.files;
-        console.log(img);
         const reader = new FileReader();
-        console.log(reader);
-	    reader.readAsDataURL(file.files[0])
-        console.log(file.files[0]);
-        
+	reader.readAsDataURL(file.files[0])
         reader.addEventListener('load', ()=>{
                 const url = reader.result;
                 urlImage = file.files[0];
-                console.log(url);
                 imgModal.src = url;
                 upload.appendChild(imgModal)
                 ajoutplus.classList.add('off');
@@ -346,7 +336,6 @@ function postWorks ()
             
      }) .then(res => { 
                 if(res.ok) { 
-                        console.log('ok');
                         formSubmit()
                         photos.innerHTML += '<figure class="photos"><img  src= "http://localhost:5678/images/' + urlImage.name+'"alt="'+ title.value+'"></img> <figcaption> '+  title.value +'</figcaption> </figure>';
                         galleryModal.innerHTML += '<figure class="photos-modal "><img  src= "http://localhost:5678/images/' + urlImage.name +'"alt="'+title.value+'" ><i class="fa-solid fa-trash-can foreach bin" ></i></img> <figcaption> éditer </figcaption> </figure>';
@@ -355,9 +344,7 @@ function postWorks ()
                 } 
                 else {return};
 
-        }).catch((error) => {
-                console.log(error);
-                console.log('erreur')}); 
+        }).catch((error) => {console.log(error);}); 
  }
 
 function formSubmit() {
@@ -368,7 +355,6 @@ function formSubmit() {
         imageicon.classList.remove('off');
         dataForm = null;
         dataForm = new FormData();
-        console.log(upload.childElementCount);
         if (upload.childElementCount ==5 ){upload.removeChild(imgModal)}
 }
 
